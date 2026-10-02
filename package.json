@@ -1,0 +1,74 @@
+{
+  "name": "@hsm207/ag-ui-adk-server-ts",
+  "version": "0.1.13",
+  "private": false,
+  "description": "Server-side bridge between Google ADK agents and AG-UI clients, in TypeScript. The agent turn runs in your server and the package depends on no chat framework.",
+  "keywords": [
+    "adk",
+    "ag-ui",
+    "agent",
+    "google-adk",
+    "protocol",
+    "server",
+    "sse",
+    "streaming",
+    "translator",
+    "typescript"
+  ],
+  "homepage": "https://github.com/hsm207/ag-ui-adk-server-ts#readme",
+  "bugs": {
+    "url": "https://github.com/hsm207/ag-ui-adk-server-ts/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hsm207/ag-ui-adk-server-ts.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "lint": "tsc --noEmit",
+    "lint:tests": "tsc -p tsconfig.tests.json",
+    "lint:ox": "oxlint --type-aware",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "test": "vitest run --project programmer --project learning",
+    "test:watch": "vitest",
+    "test:app": "vitest run --project application",
+    "test:app:llm": "vitest run --project application-llm",
+    "test:learning": "vitest run --project learning",
+    "test:learning:llm": "vitest run --project learning-llm",
+    "verify": "npm run lint && npm run lint:tests && npm run lint:ox && npm run format:check && npm run test && npm run build"
+  },
+  "dependencies": {
+    "@ag-ui/core": "^1.0.0",
+    "@ag-ui/encoder": "^1.0.0",
+    "@google/adk": "^2.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^22.14.0",
+    "express": "^5.2.1",
+    "oxfmt": "^0.70.0",
+    "oxlint": "^1.85.0",
+    "oxlint-tsgolint": "^7.0.2003",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.2",
+    "zod": "^4.6.5"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

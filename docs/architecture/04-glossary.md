@@ -1,0 +1,14 @@
+# Glossary
+
+| Term                      | Meaning                                                                                                                                                                  | Enforced by                              |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------- |
+| **Contract**              | A type obeyed across a file boundary; lives in a context's `contracts.ts`.                                                                                               | `tsc`                                    |
+| **Mapping**               | An ADK event shape maps to specific AG-UI frames.                                                                                                                        | `tests/programmer/*.contract.test.ts`    |
+| **Port**                  | An interface the application embedding the package implements (`RunnerLike`, `SessionServicePort`). A real ADK `Runner` and a test double are interchangeable behind it. | `tsc` + contract tests                   |
+| **Bounded context**       | A folder owning one change reason: `http/`, `run/`, `translation/`.                                                                                                      | folder layout                            |
+| **Per-run state**         | The `TranslationState` created fresh per run; concurrent runs share nothing.                                                                                             | contract tests                           |
+| **Terminal guarantee**    | Exactly one closing frame per run (`RUN_FINISHED` or `RUN_ERROR`), whatever the runner does.                                                                             | `createAdkAgent-errors.contract.test.ts` |
+| **Tool-result stitching** | The client's tool result appended into the ADK session as a `FunctionResponse`: exact id echo, answered once, owning-agent authorship.                                   | `tool-results.contract.test.ts`          |
+| **Replay**                | ADK's consolidated event repeating text already streamed as partials; dropped.                                                                                           | `text-message.contract.test.ts`          |
+| **State carrying**        | The client's UI state written under `DEFAULT_STATE_ROOT_KEY` each run, replacing the previous payload.                                                                   | `createAdkAgent.contract.test.ts`        |
+| **HITL pause**            | A long-running tool call ends the run; the client's follow-up POST carries the result and continues the turn.                                                            | learning probes                          |
